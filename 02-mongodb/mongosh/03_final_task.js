@@ -34,5 +34,5 @@ printjson(db.zamowienia.find(
 printjson(db.zamowienia.aggregate([
   { $match: { "klient.nazwisko": "Mazur" } },
   { $unwind: "$pozycje" },
-  { $group: { _id: "$_id", wartosc: { $sum: { $multiply: ["$pozycje.ilosc", "$pozycje.cena"] } } } }
+  { $group: { _id: "$_id", wartosc_zamowienia: { $sum: { $multiply: ["$pozycje.ilosc", "$pozycje.cena"] } } } }
 ]).toArray());

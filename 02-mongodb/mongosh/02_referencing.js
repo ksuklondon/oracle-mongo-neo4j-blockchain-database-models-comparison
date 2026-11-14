@@ -25,9 +25,9 @@ db.produkty.insertMany([
 db.zamowienia_ref.insertMany([
   { _id: 1, id_klienta: 1, data_zamowienia: ISODate("2026-09-25T10:00:00Z"), status: "NOWE",
     pozycje: [ { id_produktu: 1, ilosc: 1, cena: 4200 }, { id_produktu: 3, ilosc: 2, cena: 250 } ] },
-  { _id: 2, id_klienta: 2, data_zamowienia: ISODate("2026-09-26T09:00:00Z"), status: "OPLACONE",
+  { _id: 2, id_klienta: 2, data_zamowienia: ISODate("2026-09-26T09:30:00Z"), status: "OPLACONE",
     pozycje: [ { id_produktu: 2, ilosc: 1, cena: 1200 }, { id_produktu: 4, ilosc: 2, cena: 120 } ] },
-  { _id: 3, id_klienta: 3, data_zamowienia: ISODate("2026-09-26T12:00:00Z"), status: "WYSLANE",
+  { _id: 3, id_klienta: 3, data_zamowienia: ISODate("2026-09-26T14:15:00Z"), status: "WYSLANE",
     pozycje: [ { id_produktu: 1, ilosc: 1, cena: 4200 }, { id_produktu: 4, ilosc: 1, cena: 120 } ] }
 ]);
 

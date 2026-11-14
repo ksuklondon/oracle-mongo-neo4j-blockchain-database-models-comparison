@@ -25,6 +25,31 @@ queried from SQL*Plus, SQL Developer and Python (python-oracledb + pandas).
 - IDENTITY values are unique but not consecutive: a new customer got id 23, because failed
   inserts also consume sequence values.
 
+### Screenshots
+
+100,000 rows generated in one statement (0.28 s):
+
+![Insert 100k](images/insert-100k-rows.png)
+
+Aggregation per category and the final task (`HAVING AVG(wartosc) > 5000` → C, E):
+
+![Aggregation](images/aggregation-per-category.png)
+![Final task](images/final-task-having-avg.png)
+
+The database rejects invalid data: duplicate primary key and an order for a non-existent customer:
+
+![PK violation](images/integrity-pk-violation.png)
+![FK violation](images/integrity-fk-violation.png)
+
+Triggers: the `BEFORE` trigger blocks a negative stock, the `AFTER` trigger lowers stock automatically (Mysz 80 → 76):
+
+![Trigger error](images/trigger-negative-stock.png)
+![Stock after insert](images/trigger-stock-after-insert.png)
+
+JOIN of students and courses:
+
+![JOIN](images/join-students-courses.png)
+
 **Takeaway:** the database guards only the rules that are defined in it, but it applies them
 every time, even if the application has a bug.
 

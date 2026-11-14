@@ -31,4 +31,5 @@ HAVING COUNT(*) >= 1;
 -- D. JOIN: students with the courses of their field of study
 SELECT s.imie, s.nazwisko, s.kierunek, p.nazwa AS przedmiot
 FROM   studenci s
-JOIN   przedmioty p ON p.kierunek = s.kierunek;
+JOIN   przedmioty p ON s.kierunek = p.kierunek
+ORDER  BY s.nazwisko, p.nazwa;

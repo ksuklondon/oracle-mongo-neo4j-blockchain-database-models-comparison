@@ -28,6 +28,31 @@ in mongosh, MongoDB Compass and Python (PyMongo + pandas).
 - Compared with Oracle: no schema, no constraints, no triggers were defined, and documents in one
   collection could have different fields. Data correctness moves from the database to the application.
 
+## Screenshots
+
+**Embedding:** the whole order (customer object + array of lines) is one document; filtering works with dot notation:
+
+![Embedded order](images/embedding-order-with-array.png)
+![Filter](images/embedding-filter-status.png)
+
+Aggregation pipeline (`$unwind` → `$group` → `$sort`) computing order values:
+
+![Aggregation](images/aggregation-order-values.png)
+
+**Referencing:** orders hold only ids; `$lookup` + `$unwind` bring the customer back:
+
+![Ids only](images/referencing-ids-only.png)
+![Lookup](images/referencing-lookup-unwind.png)
+
+Python: `explode` + `json_normalize` for embedding, `merge` for referencing (after fixing the missing `_id`):
+
+![explode](images/pandas-explode-json-normalize.png)
+![merge](images/pandas-merge-fixed.png)
+
+Final task: value of my own order = 4560:
+
+![Final task](images/final-task-pipeline.png)
+
 ## Run
 
 ```powershell

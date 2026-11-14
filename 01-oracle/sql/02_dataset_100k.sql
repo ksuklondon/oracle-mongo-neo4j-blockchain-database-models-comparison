@@ -14,11 +14,17 @@ CREATE TABLE dane_100k (
 
 -- E2. 100,000 rows in one statement (row generator CONNECT BY LEVEL)
 --     wartosc grows by 37 (mod 10000), kategoria cycles B, C, D, E, A
-INSERT INTO dane_100k (id, nazwa, kategoria, wartosc)
+INSERT INTO dane_100k (id, nazwa, wartosc, kategoria)
 SELECT LEVEL,
-       'Rekord_' || LEVEL,
-       CHR(65 + MOD(LEVEL, 5)),
-       MOD(LEVEL * 37, 10000)
+       'Rekord ' || LEVEL,
+       MOD(LEVEL * 37, 10000),
+       CASE MOD(LEVEL, 5)
+           WHEN 0 THEN 'A'
+           WHEN 1 THEN 'B'
+           WHEN 2 THEN 'C'
+           WHEN 3 THEN 'D'
+           ELSE 'E'
+       END
 FROM   dual
 CONNECT BY LEVEL <= 100000;
 

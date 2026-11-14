@@ -21,7 +21,7 @@ db.zamowienia.insertMany([
   {
     _id: 2,
     klient: { id: 2, imie: "Anna", nazwisko: "Nowak", email: "anna.nowak@example.com" },
-    data_zamowienia: ISODate("2026-09-26T09:00:00Z"),
+    data_zamowienia: ISODate("2026-09-26T09:30:00Z"),
     status: "OPLACONE",
     pozycje: [
       { produkt: { id: 2, nazwa: "Monitor" }, ilosc: 1, cena: 1200 },
@@ -31,7 +31,7 @@ db.zamowienia.insertMany([
   {
     _id: 3,
     klient: { id: 3, imie: "Piotr", nazwisko: "Zielinski", email: "piotr.zielinski@example.com" },
-    data_zamowienia: ISODate("2026-09-26T12:00:00Z"),
+    data_zamowienia: ISODate("2026-09-26T14:15:00Z"),
     status: "WYSLANE",
     pozycje: [
       { produkt: { id: 1, nazwa: "Laptop" }, ilosc: 1, cena: 4200 },
@@ -78,7 +78,7 @@ db.zamowienia.updateOne(
 // B10. Order value: $unwind the array, $group by order, $sort
 printjson(db.zamowienia.aggregate([
   { $unwind: "$pozycje" },
-  { $group: { _id: "$_id", wartosc: { $sum: { $multiply: ["$pozycje.ilosc", "$pozycje.cena"] } } } },
-  { $sort: { wartosc: -1 } }
+  { $group: { _id: "$_id", wartosc_zamowienia: { $sum: { $multiply: ["$pozycje.ilosc", "$pozycje.cena"] } } } },
+  { $sort: { wartosc_zamowienia: -1 } }
 ]).toArray());
 // -> 1: 4940, 3: 4320, 4: 2650, 2: 1440
